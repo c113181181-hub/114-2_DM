@@ -11,7 +11,7 @@
 
 ---
 
-## 第 1 題：Fork + PR 繳交測試（10 分）
+## 第 1 題：Fork + PR 繳交測試
 
 ### 任務說明
 
@@ -51,7 +51,7 @@
 
 ---
 
-## 第 2 題：數值型資料預處理與 Pipeline 實作（30 分）
+## 第 2 題：數值型資料預處理與 Pipeline 實作
 
 ### 任務說明
 
@@ -139,7 +139,7 @@ result = num_pipeline.fit_transform(df)
 
 ---
 
-## 第 3 題：ColumnTransformer 整合數值與類別管道（40 分）
+## 第 3 題：ColumnTransformer 整合數值與類別管道
 
 ### 任務說明
 
@@ -235,7 +235,7 @@ X_transformed = preprocessor.fit_transform(X)
 
 ---
 
-## 第 4 題：資料預處理觀念題（20 分）
+## 第 4 題：資料預處理觀念題
 
 ### 作答內容
 
