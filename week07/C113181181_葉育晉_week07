@@ -1,0 +1,45 @@
+姓名：葉育晉
+學號：C113181181
+
+=== 完整程式碼 ===
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_wine # 也可以換成 load_iris()
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+=== 不同 max_depth 的準確率比較 ===
+for d in depths:
+    clf = DecisionTreeClassifier(max_depth=d, random_state=42)
+    clf.fit(X_train, y_train)
+    
+    # 計算準確率
+    train_acc = accuracy_score(y_train, clf.predict(X_train))
+    test_acc = accuracy_score(y_test, clf.predict(X_test))
+    
+    train_accs.append(train_acc)
+    test_accs.append(test_acc)
+    
+    print(f"max_depth={d}: 訓練={train_acc:.4f} 測試={test_acc:.4f}")
+
+=== 最佳 max_depth ===
+最佳 max_depth：
+best_idx = np.argmax(test_accs)
+best_d = depths[best_idx]
+print(f"\n=== 最佳 max_depth ===\n最佳 max_depth: {best_d}\n測試集準確率: {test_accs[best_idx]:.4f}")
+測試集準確率：
+best_clf = DecisionTreeClassifier(max_depth=best_d, random_state=42).fit(X_train, y_train)
+importances = best_clf.feature_importances_
+indices = np.argsort(importances)[::-1]
+=== 特徵重要性前 5 名 ===
+
+
+=== 過擬合觀察 ===
+plt.plot([str(d) for d in depths], train_accs, label='Train Acc')
+plt.plot([str(d) for d in depths], test_accs, label='Test Acc')
+plt.xlabel('max_depth')
+plt.ylabel('Accuracy')
+plt.legend()
+plt.show()
+
