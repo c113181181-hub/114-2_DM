@@ -68,9 +68,9 @@ print(f'訓練集：{X_train.shape[0]} 筆，測試集：{X_test.shape[0]} 筆')
 >
 > $$RMSE = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}$$
 >
-> - $y_i$：第 $i$ 筆的實際值
-> - $\hat{y}_i$：第 $i$ 筆的預測值
-> - $n$：資料筆數
+> - $y_i$ ：第 $i$ 筆的實際值
+> - $\hat{y}_i$ ：第 $i$ 筆的預測值
+> - $n$ ：資料筆數
 > - 意義：預測值和實際值的**平均偏差**，單位和原始資料相同（例如：萬元）。RMSE 越小，模型預測越準。
 
 ```python
@@ -152,13 +152,13 @@ $$\beta = \frac{n\sum x_i y_i - \sum x_i \sum y_i}{n\sum x_i^2 - (\sum x_i)^2} \
 
 $$\bar{x} = \frac{100}{4} = 25 \qquad \bar{y} = \frac{340}{4} = 85$$
 
-**Step 2：代入公式算斜率 $\beta$**
+**Step 2：代入公式算斜率 $\beta$ **
 
 $$\beta = \frac{4 \times 9600 - 100 \times 340}{4 \times 3000 - 100^2} = \frac{38400 - 34000}{12000 - 10000} = \frac{4400}{2000} = 2.2$$
 
 意義：廣告每多花 1 萬，銷售額平均增加 **2.2 萬**。
 
-**Step 3：代入公式算截距 $\alpha$**
+**Step 3：代入公式算截距 $\alpha$ **
 
 $$\alpha = 85 - 2.2 \times 25 = 85 - 55 = 30$$
 
@@ -278,10 +278,10 @@ print(f'  截距: {lr_multi.intercept_:.4f}')
 $$\mathbf{y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol{\epsilon}$$
 
 其中：
-- $\mathbf{X}$：特徵矩陣（每列一筆資料，每行一個特徵，最前面加一行全 1 代表截距）
+- $\mathbf{X}$ ：特徵矩陣（每列一筆資料，每行一個特徵，最前面加一行全 1 代表截距）
 - $\boldsymbol{\beta}$ ：係數向量 $[\alpha, \beta_1, \beta_2, \beta_3]^T$ （要求解的未知數）
-- $\mathbf{y}$：實際值向量
-- $\boldsymbol{\epsilon}$：誤差向量
+- $\mathbf{y}$ ：實際值向量
+- $\boldsymbol{\epsilon}$ ：誤差向量
 
 **最小平方法的矩陣解**（Normal Equation）：
 
@@ -304,17 +304,17 @@ $$\boldsymbol{\beta} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y}$$
 
 $$\mathbf{X} = \begin{bmatrix} 1 & 10 & 5 \\ 1 & 20 & 10 \\ 1 & 30 & 5 \\ 1 & 40 & 10 \end{bmatrix} \qquad \mathbf{y} = \begin{bmatrix} 8 \\ 13 \\ 14 \\ 19 \end{bmatrix}$$
 
-**Step 2：計算 $\mathbf{X}^T \mathbf{X}$**（特徵矩陣的轉置 × 特徵矩陣）
+**Step 2：計算 $\mathbf{X}^T \mathbf{X}$ **（特徵矩陣的轉置 × 特徵矩陣）
 
 $$\mathbf{X}^T \mathbf{X} = \begin{bmatrix} 1 & 1 & 1 & 1 \\ 10 & 20 & 30 & 40 \\ 5 & 10 & 5 & 10 \end{bmatrix} \begin{bmatrix} 1 & 10 & 5 \\ 1 & 20 & 10 \\ 1 & 30 & 5 \\ 1 & 40 & 10 \end{bmatrix} = \begin{bmatrix} 4 & 100 & 30 \\ 100 & 3000 & 800 \\ 30 & 800 & 250 \end{bmatrix}$$
 
-**Step 3：計算 $\mathbf{X}^T \mathbf{y}$**
+**Step 3：計算 $\mathbf{X}^T \mathbf{y}$ **
 
 $$\mathbf{X}^T \mathbf{y} = \begin{bmatrix} 1 & 1 & 1 & 1 \\ 10 & 20 & 30 & 40 \\ 5 & 10 & 5 & 10 \end{bmatrix} \begin{bmatrix} 8 \\ 13 \\ 14 \\ 19 \end{bmatrix} = \begin{bmatrix} 54 \\ 1550 \\ 435 \end{bmatrix}$$
 
 驗算： $1 \times 8 + 1 \times 13 + 1 \times 14 + 1 \times 19 = 54$ ✓
 
-**Step 4：求解 $\boldsymbol{\beta} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y}$**
+**Step 4：求解 $\boldsymbol{\beta} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y}$ **
 
 這一步需要算 3×3 矩陣的反矩陣再相乘，手算較複雜，實務上交給 Python：
 
@@ -336,7 +336,7 @@ print(f'廣播 β2 = {beta[2]:.4f}')
 | $\beta_1$（電視） | 0.3 | 電視每多花 1 萬 → 銷售增 0.3 萬 |
 | $\beta_2$（廣播） | 0.4 | 廣播每多花 1 萬 → 銷售增 0.4 萬 |
 
-迴歸方程：$\hat{y} = 0.3 x_1 + 0.4 x_2 + 2.0$
+迴歸方程： $\hat{y} = 0.3 x_1 + 0.4 x_2 + 2.0$
 
 **Step 5：驗證——預測每筆資料**
 
