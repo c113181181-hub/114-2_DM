@@ -27,10 +27,19 @@
 **Cell 1：匯入套件 + 載入資料 + 標準化比較**
 
 ```python
+# === 安裝中文字型（Colab 環境需要，只要跑一次）===
+import subprocess, matplotlib
+subprocess.run(['apt-get', '-qq', '-y', 'install', 'fonts-noto-cjk'], capture_output=True)
+matplotlib.font_manager._load_fontmanager(try_read_cache=False)  # 重新載入字型快取
+
 # 匯入需要的套件
 import numpy as np                                  # 數學運算
 import pandas as pd                                 # 表格資料處理
 import matplotlib.pyplot as plt                     # 繪圖
+
+# 設定中文字型
+plt.rcParams['font.sans-serif'] = ['Noto Sans CJK TC', 'Microsoft JhengHei', 'SimHei']
+plt.rcParams['axes.unicode_minus'] = False   # 負號正常顯示
 from sklearn.datasets import load_breast_cancer     # 內建乳癌資料集（569 筆, 30 個特徵）
 from sklearn.model_selection import train_test_split  # 資料切割
 from sklearn.neighbors import KNeighborsClassifier  # KNN 模型

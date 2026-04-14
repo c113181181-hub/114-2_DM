@@ -29,10 +29,19 @@
 **Cell 1：匯入套件與建立資料**
 
 ```python
+# === 安裝中文字型（Colab 環境需要，只要跑一次）===
+import subprocess, matplotlib
+subprocess.run(['apt-get', '-qq', '-y', 'install', 'fonts-noto-cjk'], capture_output=True)
+matplotlib.font_manager._load_fontmanager(try_read_cache=False)  # 重新載入字型快取
+
 # 匯入需要的套件
 import numpy as np                        # 數學運算（亂數、開根號等）
 import pandas as pd                       # 表格資料處理
 import matplotlib.pyplot as plt           # 繪圖
+
+# 設定中文字型（安裝後才能生效）
+plt.rcParams['font.sans-serif'] = ['Noto Sans CJK TC', 'Microsoft JhengHei', 'SimHei']
+plt.rcParams['axes.unicode_minus'] = False   # 負號正常顯示
 from sklearn.linear_model import LinearRegression       # 線性迴歸模型
 from sklearn.model_selection import train_test_split    # 資料切割（訓練集/測試集）
 from sklearn.metrics import r2_score, mean_squared_error  # 評估指標（R²、MSE）
@@ -78,7 +87,7 @@ print(f'測試 RMSE: {np.sqrt(mean_squared_error(y_test, y_pred_test)):.4f}')
 **Cell 3：視覺化**
 
 ```python
-# === 視覺化：散佈圖 + 迴歸線 ===
+# === 視覺化：散佈圖 + 迴歸線（中文字型已在 Cell 1 設定）===
 plt.figure(figsize=(8, 5))                          # 設定圖片大小
 plt.scatter(X_test, y_test, color='blue', label='Actual')   # 藍點 = 實際值
 # 排序後畫線，避免線條鋸齒（因為 X_test 的順序是隨機的）
