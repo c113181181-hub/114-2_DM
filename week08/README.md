@@ -24,21 +24,24 @@
 
 ### 課堂範例：乳癌資料 KNN 分類 + 標準化影響
 
-**Cell 1：匯入套件 + 載入資料 + 標準化比較**
+**Cell 0：安裝中文字型（只要跑一次）**
 
 ```python
 # === 安裝中文字型（Colab 環境需要，只要跑一次）===
-!wget -q -O /tmp/NotoSansCJKtc-Regular.otf https://github.com/google/fonts/raw/main/ofl/notosanstc/NotoSansTC%5Bwght%5D.ttf
+import matplotlib
 import matplotlib.font_manager as fm
-fm.fontManager.addfont('/tmp/NotoSansCJKtc-Regular.otf')
+!wget -q -O TaipeiSansTCBeta-Regular.ttf https://drive.google.com/uc?id=1eGAsTN1HBpJAkeVM57_C7ccp7hbgSz3_&export=download
+fm.fontManager.addfont('TaipeiSansTCBeta-Regular.ttf')  # 註冊台北黑體到 matplotlib
+matplotlib.rc('font', family='Taipei Sans TC Beta')      # 設定為預設字型
+```
 
+**Cell 1：匯入套件 + 載入資料 + 標準化比較**
+
+```python
 # 匯入需要的套件
 import numpy as np                                  # 數學運算
 import pandas as pd                                 # 表格資料處理
 import matplotlib.pyplot as plt                     # 繪圖
-import matplotlib
-matplotlib.rc('font', family='Noto Sans TC')
-matplotlib.rc('axes', unicode_minus=False)
 from sklearn.datasets import load_breast_cancer     # 內建乳癌資料集（569 筆, 30 個特徵）
 from sklearn.model_selection import train_test_split  # 資料切割
 from sklearn.neighbors import KNeighborsClassifier  # KNN 模型

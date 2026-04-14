@@ -26,22 +26,24 @@
 
 用一組簡單的廣告資料，示範從資料到模型的完整流程。
 
-**Cell 1：匯入套件與建立資料**
+**Cell 0：安裝中文字型（只要跑一次）**
 
 ```python
 # === 安裝中文字型（Colab 環境需要，只要跑一次）===
-# 下載 Google Noto 繁體中文字型，直接註冊到 matplotlib
-!wget -q -O /tmp/NotoSansCJKtc-Regular.otf https://github.com/google/fonts/raw/main/ofl/notosanstc/NotoSansTC%5Bwght%5D.ttf
+import matplotlib
 import matplotlib.font_manager as fm
-fm.fontManager.addfont('/tmp/NotoSansCJKtc-Regular.otf')   # 註冊字型（不需重建快取）
+!wget -q -O TaipeiSansTCBeta-Regular.ttf https://drive.google.com/uc?id=1eGAsTN1HBpJAkeVM57_C7ccp7hbgSz3_&export=download
+fm.fontManager.addfont('TaipeiSansTCBeta-Regular.ttf')  # 註冊台北黑體到 matplotlib
+matplotlib.rc('font', family='Taipei Sans TC Beta')      # 設定為預設字型
+```
 
+**Cell 1：匯入套件與建立資料**
+
+```python
 # 匯入需要的套件
 import numpy as np                        # 數學運算（亂數、開根號等）
 import pandas as pd                       # 表格資料處理
 import matplotlib.pyplot as plt           # 繪圖
-import matplotlib
-matplotlib.rc('font', family='Noto Sans TC')     # 指定中文字型
-matplotlib.rc('axes', unicode_minus=False)        # 負號正常顯示
 from sklearn.linear_model import LinearRegression       # 線性迴歸模型
 from sklearn.model_selection import train_test_split    # 資料切割（訓練集/測試集）
 from sklearn.metrics import r2_score, mean_squared_error  # 評估指標（R²、MSE）
